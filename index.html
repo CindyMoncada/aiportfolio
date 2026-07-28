@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cindy Moncada · AI Solutions Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#14110D;        /* warm near-black page */
+    --card:#1D1913;         /* raised surface */
+    --ink:#F0E7D8;          /* warm sand, primary text */
+    --ink-soft:#C4B8A6;     /* secondary text */
+    --mute:#8E8272;         /* tertiary */
+    --line:#2F2820;         /* hairlines */
+    --accent:#C89A6B;       /* clay */
+    --accent-soft:#2A2118;
+    --amber:#D9B26A;        /* ochre */
+    --amber-soft:#2C2417;
+    --violet:#9FAE8E;       /* sage */
+    --violet-soft:#212518;
+    --coral:#C97B5A;        /* rust */
+    --coral-soft:#2C1E17;
+    --radius:16px;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Karla","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  /* signature: warm lamplight glow + fine grain, so the dark reads as paper at night */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(760px 480px at 18% -6%, rgba(200,154,107,0.16), transparent 68%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 30px;position:relative;z-index:2}
+
+  h1,h2,.serif{font-family:var(--serif);font-weight:400;letter-spacing:-0.015em}
+
+  /* ---- top bar / toggle ---- */
+  .topbar{position:sticky;top:0;z-index:60;background:rgba(20,17,13,0.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+  .brand{font-family:var(--serif);font-size:18px;letter-spacing:-0.01em;color:var(--ink)}
+  .brand b{font-weight:500}
+  .brand span{color:var(--mute);font-family:var(--mono);font-size:11.5px;letter-spacing:0.02em}
+  .toggle{display:flex;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:3px}
+  .toggle button{
+    font-family:var(--mono);font-size:11.5px;font-weight:400;letter-spacing:0.04em;
+    border:none;background:none;color:var(--mute);cursor:pointer;
+    padding:7px 15px;border-radius:100px;transition:all .2s ease;white-space:nowrap;
+  }
+  .toggle button:hover{color:var(--ink-soft)}
+  .toggle button.on{background:var(--accent);color:var(--paper);font-weight:500}
+  .toggle button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* ---- hero ---- */
+  .hero{padding:86px 0 52px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:26px}
+  .hero h1{font-size:60px;line-height:1.04;margin-bottom:26px;letter-spacing:-0.03em}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .lede{font-size:19px;line-height:1.6;color:var(--ink-soft);max-width:660px;min-height:62px;transition:opacity .2s ease}
+  .subline{margin-top:30px;font-family:var(--mono);font-size:11.5px;letter-spacing:0.03em;color:var(--mute);display:flex;flex-wrap:wrap;gap:8px 20px}
+  .subline span{display:inline-flex;align-items:center;gap:8px}
+  .dot{width:3px;height:3px;border-radius:50%;background:var(--accent);display:inline-block}
+
+  /* ---- proof strip ---- */
+  .proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:10px 0}
+  .proof div{background:var(--card);padding:26px 22px}
+  .proof .n{font-family:var(--serif);font-size:40px;line-height:1;color:var(--accent);margin-bottom:10px;letter-spacing:-0.02em}
+  .proof .l{font-size:12.5px;color:var(--ink-soft);line-height:1.45}
+
+  /* ---- sections ---- */
+  section{padding:58px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:10px}
+  .sec-num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:0.06em}
+  .sec-head h2{font-size:32px}
+  .sec-sub{color:var(--mute);font-size:15px;margin-bottom:36px;max-width:620px}
+
+  /* ---- case studies ---- */
+  .case{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:36px 38px;margin-bottom:22px;transition:border-color .25s ease}
+  .case:hover{border-color:#3D342A}
+  .case-top{display:flex;justify-content:space-between;align-items:flex-start;gap:22px;margin-bottom:22px;flex-wrap:wrap}
+  .case-org{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .case h3{font-family:var(--serif);font-size:25px;line-height:1.25;max-width:560px;letter-spacing:-0.02em}
+  .case-role{flex-shrink:0;font-family:var(--mono);font-size:11px;color:var(--mute);text-align:right;line-height:1.7;letter-spacing:0.02em}
+  .case-body{display:grid;grid-template-columns:1fr 1fr;gap:28px 36px;margin-top:8px}
+  @media(max-width:640px){.case-body{grid-template-columns:1fr}}
+  .block-label{font-family:var(--mono);font-size:10.5px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute);margin-bottom:11px}
+  .case-body p{font-size:14.5px;color:var(--ink-soft);line-height:1.68}
+  .case-body ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .case-body li{font-size:14px;color:var(--ink-soft);line-height:1.6;padding-left:19px;position:relative}
+  .case-body li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .outcome li::before{background:var(--amber)}
+  .outcome b{color:var(--ink);font-weight:600}
+  .story{grid-column:1/-1;background:var(--accent-soft);border-left:2px solid var(--accent);border-radius:0 10px 10px 0;padding:22px 24px}
+  .story .block-label{color:var(--accent)}
+  .story p{color:var(--ink);font-size:14.5px;font-style:italic}
+  .tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;padding-top:8px;border-top:1px solid var(--line)}
+  .tag{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:5px 13px;letter-spacing:0.02em}
+
+  /* ---- frameworks ---- */
+  .fw{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px 34px;margin-bottom:20px}
+  .fw-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+  .fw h3{font-family:var(--serif);font-size:22px;letter-spacing:-0.02em}
+  .fw .kind{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);background:var(--amber-soft);padding:4px 11px;border-radius:100px}
+  .fw-desc{font-size:14px;color:var(--ink-soft);margin-bottom:24px;max-width:640px;line-height:1.7}
+
+  /* ROI rubric */
+  .dim{display:grid;grid-template-columns:180px 1fr 40px;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+  .dim-name{font-size:13.5px;font-weight:500;color:var(--ink)}
+  .dim-name em{display:block;font-style:normal;font-size:11.5px;color:var(--mute);font-weight:400;margin-top:2px;line-height:1.4}
+  .track{height:6px;background:var(--paper);border-radius:4px;overflow:hidden}
+  .fill{height:100%;border-radius:4px}
+  .wt{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-align:right}
+  .rec{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+  @media(max-width:560px){.rec{grid-template-columns:1fr}}
+  .rec div{border-radius:10px;padding:14px 16px}
+  .rec b{display:block;font-family:var(--serif);font-size:15px;font-weight:500;margin-bottom:4px}
+  .rec p{font-size:12px;line-height:1.5}
+  .rec .build{background:var(--accent-soft)} .rec .build b,.rec .build p{color:var(--accent)}
+  .rec .buy{background:var(--violet-soft)} .rec .buy b,.rec .buy p{color:var(--violet)}
+  .rec .native{background:var(--amber-soft)} .rec .native b,.rec .native p{color:var(--amber)}
+
+  /* capability matrix */
+  .mtable{width:100%;border-collapse:collapse;font-size:13px}
+  .mtable th{font-family:var(--mono);text-align:left;font-weight:400;color:var(--mute);font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 12px;border-bottom:1px solid var(--line)}
+  .mtable td{padding:12px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5}
+  .mtable tr:last-child td{border-bottom:none}
+  .mtable td:first-child{font-weight:500;color:var(--ink)}
+  .tier{font-family:var(--mono);font-size:10px;font-weight:500;padding:3px 9px;border-radius:100px;white-space:nowrap;letter-spacing:0.04em}
+  .tier.low{background:var(--violet-soft);color:var(--violet)}
+  .tier.med{background:var(--amber-soft);color:var(--amber)}
+  .tier.high{background:var(--coral-soft);color:var(--coral)}
+  .mnote{font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:16px;letter-spacing:0.02em}
+
+  /* governance */
+  .gov{display:flex;flex-direction:column;gap:14px}
+  .gov-stages{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:10px}
+  @media(max-width:560px){.gov-stages{grid-template-columns:1fr}.gate{display:none}}
+  .stage{border-radius:12px;padding:18px;border:1px solid var(--line)}
+  .stage.s1{background:var(--accent-soft)} .stage.s2{background:var(--violet-soft)} .stage.s3{background:var(--amber-soft)}
+  .stage b{font-family:var(--serif);font-size:17px;font-weight:500;display:block;margin-bottom:8px}
+  .stage.s1 b{color:var(--accent)} .stage.s2 b{color:var(--violet)} .stage.s3 b{color:var(--amber)}
+  .stage p{font-size:12px;line-height:1.6;color:var(--ink-soft)}
+  .gate{align-self:center;font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:0.1em;text-transform:uppercase;padding:0 2px}
+  .gov-layer{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+  .gov-layer b{font-size:13.5px;font-weight:600;color:var(--ink)}
+  .gov-layer span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.6}
+  .gov-foot{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:center;margin-top:6px;letter-spacing:0.02em}
+
+  /* ---- stack ---- */
+  .stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:640px){.stack-grid{grid-template-columns:1fr}}
+  .stack-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px}
+  .stack-card h4{font-family:var(--mono);font-size:10.5px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-size:12.5px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:6px 12px}
+  .creds{display:flex;flex-direction:column;gap:10px}
+  .cred{font-size:13.5px;color:var(--ink);display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);align-items:baseline}
+  .cred:last-child{border-bottom:none;padding-bottom:0}
+  .cred span{font-family:var(--mono);color:var(--mute);font-size:11px;flex-shrink:0;letter-spacing:0.02em}
+
+  /* ---- contact ---- */
+  .contact{text-align:center;padding:72px 0 34px}
+  .contact h2{font-size:38px;margin-bottom:16px;letter-spacing:-0.03em}
+  .contact p{color:var(--ink-soft);font-size:16px;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto}
+  .cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .cta{font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;padding:14px 26px;border-radius:100px;transition:all .2s ease}
+  .cta:hover{transform:translateY(-2px)}
+  .cta.primary{background:var(--accent);color:var(--paper);font-weight:500}
+  .cta.primary:hover{background:#D8AB7C}
+  .cta.ghost{background:none;color:var(--ink-soft);border:1px solid var(--line)}
+  .cta.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  footer{text-align:center;padding:34px 0 56px;color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:0.03em;position:relative;z-index:2}
+
+  @media(max-width:640px){
+    .hero{padding:56px 0 40px}
+    .hero h1{font-size:38px}
+    .lede{font-size:17px}
+    .proof{grid-template-columns:1fr 1fr}
+    .brand span{display:none}
+    .case{padding:26px 24px}
+    .fw{padding:26px 22px}
+    .case-role{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><b>Cindy Moncada</b> <span>· AI Solutions Architect</span></div>
+    <div class="toggle" role="tablist" aria-label="View portfolio by role focus">
+      <button role="tab" class="on" data-view="architect" onclick="setView('architect',this)">Architect</button>
+      <button role="tab" data-view="commercial" onclick="setView('commercial',this)">Commercial</button>
+      <button role="tab" data-view="programmes" onclick="setView('programmes',this)">Programmes</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow" id="eyebrow">AI Solutions Architecture</div>
+    <h1>I turn AI from experiment into <em>production</em>.</h1>
+    <p class="lede" id="lede"></p>
+    <div class="subline">
+      <span><i class="dot"></i>Barcelona</span>
+      <span><i class="dot"></i>English · Spanish · Catalan · French</span>
+      <span><i class="dot"></i>300+ founders, researchers &amp; executives</span>
+    </div>
+  </header>
+
+  <div class="proof">
+    <div><div class="n">300+</div><div class="l">people &amp; orgs with AI deployed</div></div>
+    <div><div class="n">95%</div><div class="l">program completion · 4.5/5 NPS</div></div>
+    <div><div class="n">420</div><div class="l">investor meetings via AI-assisted pipeline</div></div>
+    <div><div class="n">4</div><div class="l">EU-funded programs led</div></div>
+  </div>
+
+  <section id="work">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Selected work</h2></div>
+    <p class="sec-sub" id="work-sub">Three engagements where AI moved from pilot to production: architecture, adoption at scale, and governed pipelines.</p>
+    <div id="cases"></div>
+  </section>
+
+  <section id="frameworks">
+    <div class="sec-head"><span class="sec-num">02</span><h2>How I think</h2></div>
+    <p class="sec-sub" id="fw-sub">The reusable tools behind the work. A case study proves I did something once; these prove I can do it anywhere.</p>
+    <div id="fws"></div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Toolset &amp; credentials</h2></div>
+    <p class="sec-sub">The technical and commercial stacks behind the work, and the credentials that back them.</p>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <h4>AI &amp; architecture stack</h4>
+        <div class="chips">
+          <span class="chip">Azure AI</span><span class="chip">AWS</span><span class="chip">LLMOps</span>
+          <span class="chip">RAG</span><span class="chip">Agentic AI</span><span class="chip">Vector databases</span>
+          <span class="chip">Generative AI</span><span class="chip">Deep learning</span><span class="chip">Python for AI/ML</span>
+          <span class="chip">Responsible AI</span><span class="chip">EU AI Act</span><span class="chip">AI governance</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <h4>Commercial &amp; CRM stack</h4>
+        <div class="chips">
+          <span class="chip">Salesforce</span><span class="chip">HubSpot</span><span class="chip">NetSuite</span>
+          <span class="chip">SAP</span><span class="chip">Full-cycle B2B sales</span><span class="chip">Pipeline &amp; forecasting</span>
+          <span class="chip">Partnerships &amp; alliances</span><span class="chip">Go-to-market</span><span class="chip">Financial modelling</span>
+        </div>
+      </div>
+    </div>
+    <div class="stack-card" style="margin-top:20px">
+      <h4>Credentials</h4>
+      <div class="creds" style="display:grid;grid-template-columns:1fr 1fr;gap:9px 28px">
+        <div class="cred">AI Engineer <span>IBM</span></div>
+        <div class="cred">Generative AI Leader <span>Google</span></div>
+        <div class="cred">AI Agents Intensive <span>Google</span></div>
+        <div class="cred">Deep Learning <span>IBM</span></div>
+        <div class="cred">Scrum Master &amp; Product Owner <span>Scrum Manager</span></div>
+        <div class="cred">PMI Project Management Ready <span>PMI</span></div>
+        <div class="cred">Data Science Specialization <span>IBM</span></div>
+        <div class="cred">MBA <span>Univ. Autònoma de Barcelona</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 class="serif">Let's talk.</h2>
+    <p id="contact-line">If you're building AI that has to actually ship, I'd like to hear about it.</p>
+    <div class="cta-row">
+      <a class="cta primary" href="mailto:cindymoncadaemail@gmail.com">Email me</a>
+      <a class="cta ghost" href="https://www.linkedin.com/in/cindymoncada/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="cta ghost" id="cv-download" href="Cindy_Moncada_CV_Architect.pdf" download>Download CV</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>Cindy Moncada · Barcelona · Built to show the work, not describe it</footer>
+
+<script>
+/* ---------- content model ---------- */
+const LEDE = {
+  architect:"AI Solutions Architect designing enterprise AI systems that get deployed, governed, and actually used across deep tech, life sciences, and regulated environments.",
+  commercial:"Enterprise AI sales and business development with the technical depth to sell what I've actually built: full-cycle B2B, partnerships, pricing and GTM, including founding and selling my own company.",
+  programmes:"I design and deliver EU-funded innovation programmes, Horizon, EIT, MSCA and NextGenerationEU, that take ventures from ideation to market, with the KPI reporting funding bodies require."
+};
+const EYEBROW = { architect:"AI Solutions Architecture", commercial:"Enterprise AI Sales & BD", programmes:"EU-Funded Programme Delivery" };
+const WORKSUB = {
+  architect:"Three engagements where AI moved from pilot to production, architecture first, then adoption at scale and governed pipelines.",
+  commercial:"Three engagements where AI turned into commercial outcomes: pipeline and partnerships first, then the systems and adoption behind them.",
+  programmes:"Three engagements where funded programmes produced measurable results: cohort delivery and funder reporting first, then the systems behind them."
+};
+const CONTACT = {
+  architect:"If you're building AI that has to actually ship, and survive governance, I'd like to hear about it.",
+  commercial:"If you're building AI that has to work and pay for itself, let's talk.",
+  programmes:"If you're running a funded programme that has to show real results to a funding body, that's the work I do."
+};
+const CV = {
+  architect:"Cindy_Moncada_CV_Architect.pdf",
+  commercial:"Cindy_Moncada_CV_Commercial.pdf",
+  programmes:"Cindy_Moncada_CV_Programmes.pdf"
+};
+
+const CASES = {
+  rmit:{
+    org:"RMIT Europe", role:"AI Programme Leader<br>& Solutions Architect<br>2023–2026",
+    title:"From GenAI pilots to governed production AI: an institution-wide architecture",
+    challenge:"RMIT Europe had GenAI enthusiasm but no coherent system: scattered pilots, no governance, and no way for leadership to see which AI efforts created value. The task was an end-to-end AI strategy spanning executive policy down to the tools researchers used daily. It had to be real, not a slide deck.",
+    did:[
+      "Authored the multi-domain architecture roadmap across the application landscape (Canvas LMS, Salesforce CRM), the AWS data platform, and the Azure cloud environment, defining current, transition, and target states.",
+      "Designed the integration layer connecting the CRM with research databases and researcher workflows.",
+      "Built the hybrid governance framework, executive policy to frontline adoption, that moved the org from isolated pilots to governed, production-grade agentic AI.",
+      "Evaluated and selected vendors across LLM providers and security tooling, owning the full process.",
+      "Translated the architecture into 3 reusable LLM-powered toolkits, embedded in program infrastructure.",
+      "Led RMIT Europe's delivery of 4 EU-funded programmes, CHESS and TICER (EIT), BOLSTER (Horizon) and OpenInnoTrain (MSCA), recruiting and mentoring 200+ ventures from ideation to market."
+    ],
+    ownership:"I led the strategy and roadmap end to end, coordinating a mix of internal team and external vendors on implementation.",
+    outcome:[
+      "Cut <b>~10 hours per week</b> of manual effort through deployed AI workflows.",
+      "<b>3 researcher-database integrations</b> converted into funded enterprise projects.",
+      "A repeatable governance model the institution still runs on, the transition became permanent."
+    ],
+    tags:["Enterprise AI architecture","Multi-domain integration","AI governance","Vendor selection","Agentic AI in production"]
+  },
+  allwomen:{
+    org:"AllWomen", role:"AI Programme Architect<br>& Lead · 2025–present",
+    title:"AI copilots for 75 companies: adoption at scale, measured in outcomes",
+    challenge:"Most AI training ends at inspiration: founders leave excited, then nothing ships. AllWomen, running a NextGenerationEU-funded program, needed the opposite: 100+ female founders across three cohorts walking away with working AI systems inside their businesses, and evidence it happened.",
+    did:[
+      "Designed a 5-day Human-AI Co-thinking curriculum covering the full deployment lifecycle: financial viability modelling, competitive war-gaming with AI agents, and personalised copilot design.",
+      "Architected copilot blueprints for 75 companies, one per business, mapped to each founder's real operational bottleneck, not a generic template.",
+      "Defined the full outcome framework and reported it directly to the NextGenerationEU funding body."
+    ],
+    ownership:"I designed the copilot architectures and deployment framework; each founder built her own copilot under my guidance.",
+    outcome:[
+      "<b>95% completion</b> across 3 cohorts, the highest in the program's history.",
+      "<b>4.5/5 NPS</b> (90% overall satisfaction).",
+      "Measurable business outcomes within <b>30 days</b>: new revenue streams, redesigned models, AI-powered processes."
+    ],
+    story:"One founder's biggest constraint was customer support, every enquiry ate hours she didn't have. The copilot we designed handled her front-line responses, cutting her response time sharply and giving her back time to run the business instead of her inbox. That pattern, a copilot aimed at the one bottleneck holding a founder back, repeated across the cohort.",
+    tags:["AI solution design at scale","Copilot architecture","Adoption & enablement","Outcome measurement","Funder-grade reporting"]
+  },
+  network:{
+    org:"22@Network Barcelona", role:"VP Entrepreneurship<br>Commission · 2025",
+    title:"An AI-assisted pipeline that turned 115 applications into 420 high-value meetings",
+    challenge:"Barcelona's 22@ Demo Day had the classic matching problem: a flood of applications, a limited investor pool, and no scalable way to connect the right founders to the right funds. Done manually, curation is slow and subjective. The goal was a structured, AI-assisted system that screens at volume and matches with precision.",
+    did:[
+      "Built an AI-assisted screening process across 115 applications, using AI to surface signal, assess fit, and prioritise against investor criteria rather than reviewing blind.",
+      "Designed the matching logic pairing 32 selected startups with 25 investors, structuring 420 curated meetings.",
+      "Managed the pipeline across a community of 2,000+ startups, corporates, and investors; brokered partnerships with VCs, accelerators, and innovation hubs."
+    ],
+    ownership:"I co-led the design and running of the end-to-end pipeline, with AI tools supporting screening, matching, and prioritisation.",
+    outcome:[
+      "<b>115 → 32 → 420</b>: applications to startups to curated investor meetings, run as a repeatable system.",
+      "Curated meetings translated into follow-on investor conversations and partnerships beyond the event.",
+      "A pipeline model the network could re-run, a yearly event turned into a repeatable matching engine."
+    ],
+    tags:["AI-assisted screening","Prioritisation & matching at scale","Stakeholder orchestration","Pipeline governance","Deal-flow systems"]
+  }
+};
+const CASE_ORDER = {
+  architect:["rmit","network","allwomen"],
+  commercial:["network","rmit","allwomen"],
+  programmes:["allwomen","rmit","network"]
+};
+
+const FW_ORDER = { architect:["gov","matrix","roi"], commercial:["roi","gov","matrix"], programmes:["gov","matrix","roi"] };
+
+/* ---------- renderers ---------- */
+function renderCases(view){
+  const host = document.getElementById('cases'); host.innerHTML='';
+  CASE_ORDER[view].forEach(key=>{
+    const c = CASES[key];
+    const story = c.story ? `<div class="story"><div class="block-label">One that worked</div><p>${c.story}</p></div>` : '';
+    host.insertAdjacentHTML('beforeend',`
+      <article class="case">
+        <div class="case-top">
+          <div><div class="case-org">${c.org}</div><h3>${c.title}</h3></div>
+          <div class="case-role">${c.role}</div>
+        </div>
+        <div class="case-body">
+          <div><div class="block-label">The challenge</div><p>${c.challenge}</p>
+            <p style="margin-top:14px;font-size:13px;color:var(--mute)"><em>${c.ownership}</em></p></div>
+          <div><div class="block-label">What I did</div><ul>${c.did.map(d=>`<li>${d}</li>`).join('')}</ul></div>
+          ${story}
+          <div class="outcome" style="grid-column:1/-1"><div class="block-label">Outcome</div>
+            <ul>${c.outcome.map(o=>`<li>${o}</li>`).join('')}</ul></div>
+          <div class="tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        </div>
+      </article>`);
+  });
+}
+
+const FW = {
+  roi:()=>`<div class="fw">
+    <div class="fw-head"><h3>Build-vs-buy ROI rubric</h3><span class="kind">Decision tool</span></div>
+    <p class="fw-desc">Every AI initiative (agent, integration, report, or platform add-on) scored on six weighted dimensions <b>before anyone writes code</b>. The score resolves to a build / buy / native call, then gets tracked against actual outcomes and re-scored over time.</p>
+    ${dim("Business impact","revenue, efficiency, risk reduction",100,"var(--accent)","×3")}
+    ${dim("Build cost","engineering time, complexity",66,"var(--violet)","×2")}
+    ${dim("Maintenance load","ongoing overhead to sustain",66,"var(--violet)","×2")}
+    ${dim("Risk & compliance","security, data, regulatory",66,"var(--violet)","×2")}
+    ${dim("Vendor dependency","lock-in, roadmap reliance",33,"var(--amber)","×1")}
+    ${dim("Strategic fit","core capability or commodity?",33,"var(--amber)","×1")}
+    <div class="rec">
+      <div class="build"><b>Build</b><p>High impact + core capability + weak vendor fit</p></div>
+      <div class="buy"><b>Buy</b><p>Solved commodity; costly to maintain if built</p></div>
+      <div class="native"><b>Native</b><p>The platform already does it well enough</p></div>
+    </div></div>`,
+
+  matrix:()=>`<div class="fw">
+    <div class="fw-head"><h3>AI capability matrix</h3><span class="kind">Template</span></div>
+    <p class="fw-desc">A living record of which model or tool is approved for which use case and why, with data-sensitivity tiers and review dates so nothing quietly runs on an outdated or cost-inefficient model.</p>
+    <div style="overflow-x:auto"><table class="mtable">
+      <thead><tr><th>Use case</th><th>Approved model / tool</th><th>Rationale</th><th>Data</th><th>Review</th></tr></thead>
+      <tbody>
+        <tr><td>Customer-support copilot</td><td>Mid-tier hosted LLM + RAG</td><td>Cost-efficient at volume; no sensitive data leaves tenancy</td><td><span class="tier low">Low</span></td><td>Q3</td></tr>
+        <tr><td>Internal doc search</td><td>Embeddings + vector DB</td><td>Retrieval over generation; cheap to run</td><td><span class="tier low">Low</span></td><td>Q3</td></tr>
+        <tr><td>Regulatory drafting</td><td>Frontier LLM, human-in-loop</td><td>Accuracy critical; mandatory review gate</td><td><span class="tier high">High</span></td><td>Q2</td></tr>
+        <tr><td>Financial modelling</td><td>Frontier LLM + code exec</td><td>Reasoning depth; sandboxed execution</td><td><span class="tier med">Med</span></td><td>Q2</td></tr>
+        <tr><td>Bulk classification</td><td>Small fine-tuned model</td><td>High volume; frontier cost-prohibitive</td><td><span class="tier low">Low</span></td><td>Q4</td></tr>
+      </tbody></table></div>
+    <p class="mnote">Illustrative template, adapted per organisation and its approved stack.</p></div>`,
+
+  gov:()=>`<div class="fw">
+    <div class="fw-head"><h3>Pilots-to-production governance model</h3><span class="kind">Framework</span></div>
+    <p class="fw-desc">The reason 95% of enterprise AI pilots never reach production isn't technical: it's governance and adoption. This is the model that carries an initiative across that gap.</p>
+    <div class="gov">
+      <div class="gov-stages">
+        <div class="stage s1"><b>1 · Pilot</b><p>Contained experiment · low-risk data only · fast and sandboxed</p></div>
+        <div class="gate">gate →</div>
+        <div class="stage s2"><b>2 · Validation</b><p>Eval frameworks · security review · cost &amp; maintenance check</p></div>
+        <div class="gate">gate →</div>
+        <div class="stage s3"><b>3 · Production</b><p>Monitored &amp; owned · governed access · embedded in workflow</p></div>
+      </div>
+      <div class="gov-layer"><b>Executive policy layer</b><span>Sets risk appetite, compliance boundaries, and which decisions escalate, spans all three stages.</span></div>
+      <div class="gov-layer"><b>Frontline adoption layer</b><span>Standards, toolkits, and enablement so teams actually use what ships, where most pilots die.</span></div>
+      <div class="gov-foot">A gate is a checklist, not a meeting: an initiative advances only when it clears the criteria.</div>
+    </div></div>`
+};
+function dim(name,sub,pct,color,wt){
+  return `<div class="dim"><div class="dim-name">${name}<em>${sub}</em></div>
+    <div class="track"><div class="fill" style="width:${pct}%;background:${color}"></div></div>
+    <div class="wt">${wt}</div></div>`;
+}
+function renderFws(view){
+  const host=document.getElementById('fws'); host.innerHTML='';
+  FW_ORDER[view].forEach(k=>host.insertAdjacentHTML('beforeend',FW[k]()));
+}
+
+/* ---------- view switch ---------- */
+function setView(view,btn){
+  document.querySelectorAll('.toggle button').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-selected','false');});
+  if(btn){btn.classList.add('on');btn.setAttribute('aria-selected','true');}
+  document.getElementById('eyebrow').textContent=EYEBROW[view];
+  document.getElementById('lede').textContent=LEDE[view];
+  document.getElementById('work-sub').textContent=WORKSUB[view];
+  document.getElementById('contact-line').textContent=CONTACT[view];
+  document.getElementById('cv-download').setAttribute('href',CV[view]);
+  renderCases(view);
+  renderFws(view);
+}
+setView('architect',document.querySelector('.toggle button'));
+</script>
+</body>
+</html>
