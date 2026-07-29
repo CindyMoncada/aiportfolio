@@ -4,7 +4,7 @@ AI Solutions Architect based in Barcelona. Single-page portfolio with three role
 (Architect / Commercial / Programmes) that reorder the case studies, frameworks and CV download
 to match the reader.
 
-**Live:** https://REPLACE-WITH-YOUR-URL/
+**Live:** https://cindymoncada.github.io/aiportfolio/
 
 ## Contents
 - `index.html` — the portfolio (self-contained: HTML, CSS, JS in one file)
