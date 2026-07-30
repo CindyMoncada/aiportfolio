@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cindy Moncada · AI Solutions Architect</title>
+<title>Cindy Moncada, AI Solutions Architect</title>
 <meta name="description" content="Cindy Moncada, AI Solutions Architect in Barcelona. I design and deploy enterprise AI systems that reach production: LLM pipelines, agentic workflows, governance frameworks. Architect, Commercial and Programmes profiles.">
 <meta name="author" content="Cindy Moncada">
 <meta name="theme-color" content="#14110D">
@@ -188,10 +188,13 @@
   .pv{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid var(--line);background:#000}
   .pv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .parch{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:var(--paper);margin-top:20px}
-  .docs{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;border-top:1px solid var(--line)}
-  .doclink{font-family:var(--mono);font-size:11.5px;letter-spacing:0.02em;color:var(--ink-soft);text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:8px 15px;transition:all .2s ease;display:inline-flex;align-items:center;gap:8px}
-  .doclink:hover{border-color:var(--accent);color:var(--accent)}
-  .doclink b{color:var(--accent);font-weight:500}
+  .proj-docs{grid-column:1/-1;padding-top:22px;border-top:1px solid var(--line)}
+  .proj-docs .block-label{margin-bottom:12px}
+  .docs-row{display:flex;flex-wrap:wrap;gap:10px}
+  .doclink{font-family:var(--mono);font-size:12.5px;letter-spacing:0.02em;color:var(--ink);text-decoration:none;background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:11px 16px;transition:all .2s ease;display:inline-flex;align-items:center;gap:9px}
+  .doclink:hover{background:var(--accent);color:var(--paper);transform:translateY(-1px)}
+  .doclink b{color:var(--accent);font-weight:600;font-size:13px}
+  .doclink:hover b{color:var(--paper)}
 
   /* ---- stack ---- */
   .stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -235,7 +238,7 @@
 
 <div class="topbar">
   <div class="wrap">
-    <div class="brand"><b>Cindy Moncada</b> <span>· AI Solutions Architect</span></div>
+    <div class="brand"><b>Cindy Moncada</b> <span>AI Solutions Architect</span></div>
     <div class="toggle" role="tablist" aria-label="View portfolio by role focus">
       <button role="tab" class="on" data-view="architect" onclick="setView('architect',this)">Architect</button>
       <button role="tab" data-view="commercial" onclick="setView('commercial',this)">Commercial</button>
@@ -252,14 +255,14 @@
     <p class="lede" id="lede"></p>
     <div class="subline">
       <span><i class="dot"></i>Barcelona</span>
-      <span><i class="dot"></i>English · Spanish · Catalan · French</span>
+      <span><i class="dot"></i>English, Spanish, Catalan, French</span>
       <span><i class="dot"></i>300+ founders, researchers &amp; executives</span>
     </div>
   </header>
 
   <div class="proof">
     <div><div class="n">300+</div><div class="l">people &amp; orgs with AI deployed</div></div>
-    <div><div class="n">95%</div><div class="l">program completion · 4.5/5 NPS</div></div>
+    <div><div class="n">95%</div><div class="l">program completion, 4.5/5 NPS</div></div>
     <div><div class="n">420</div><div class="l">investor meetings via AI-assisted pipeline</div></div>
     <div><div class="n">4</div><div class="l">EU-funded programs led</div></div>
   </div>
@@ -281,14 +284,14 @@
     <p class="sec-sub">Systems I built end to end on the cloud, documented the way a Solutions Architect is judged: the design decisions, the trade-offs, the governance, and the cost. Working reference implementations, not slideware.</p>
     <article class="case">
       <div class="case-top">
-        <div><div class="case-org">Project 01 · Azure · EU AI Act</div><h3>EU AI Act compliance advisor</h3></div>
+        <div><div class="case-org">Project 01, Azure, EU AI Act</div><h3>EU AI Act compliance advisor</h3></div>
         <div class="case-role">RAG on Azure<br>Reference build<br>2026</div>
       </div>
       <div class="proj-media">
         <div class="pv">
-          <iframe src="https://www.youtube.com/embed/J93NHQoEtek?rel=0&amp;modestbranding=1" title="EU AI Act Compliance Advisor — RAG on Azure" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/J93NHQoEtek?rel=0&amp;modestbranding=1" title="EU AI Act Compliance Advisor, RAG on Azure" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <img class="parch" src="Project1_Architecture.svg" alt="Architecture: the EU AI Act PDF is ingested through Blob storage and an import wizard into an Azure AI Search vector index; a Foundry agent on gpt-5-mini retrieves through Foundry IQ; all inside the Sweden Central EU data boundary.">
+        <img class="parch" src="Project1_Architecture.jpg" alt="Hand-drawn architecture: the EU AI Act PDF is ingested through Blob storage and an import wizard into an Azure AI Search vector index; a Foundry agent on gpt-5-mini retrieves through Foundry IQ; all inside the Sweden Central EU data boundary.">
       </div>
       <div class="case-body">
         <div><div class="block-label">The approach</div>
@@ -301,11 +304,14 @@
             <li>Web search deliberately disabled to keep data in the boundary.</li>
             <li>Grounded answers with article-level citations; refuses out-of-scope questions.</li>
           </ul></div>
-        <div class="docs">
-          <a class="doclink" href="Project1_Design_Decisions.pdf" target="_blank" rel="noopener"><b>&#8595;</b>Design decisions</a>
-          <a class="doclink" href="Project1_Security_Governance.pdf" target="_blank" rel="noopener"><b>&#8595;</b>Security &amp; governance</a>
-          <a class="doclink" href="Project1_Cost_Model.pdf" target="_blank" rel="noopener"><b>&#8595;</b>Cost model</a>
-          <a class="doclink" href="Project1_Architecture.svg" target="_blank" rel="noopener"><b>&#8595;</b>Architecture diagram</a>
+        <div class="proj-docs">
+          <div class="block-label">Read the documentation</div>
+          <div class="docs-row">
+            <a class="doclink" href="Project1_Design_Decisions.pdf" download><b>&#8595;</b>Design decisions (PDF)</a>
+            <a class="doclink" href="Project1_Security_Governance.pdf" download><b>&#8595;</b>Security &amp; governance (PDF)</a>
+            <a class="doclink" href="Project1_Cost_Model.pdf" download><b>&#8595;</b>Cost model (PDF)</a>
+            <a class="doclink" href="Project1_Architecture.jpg" download><b>&#8595;</b>Architecture diagram (JPG)</a>
+          </div>
         </div>
       </div>
     </article>
@@ -360,7 +366,7 @@
 
 </div>
 
-<footer>Cindy Moncada · Barcelona · Built to show the work, not describe it</footer>
+<footer>Cindy Moncada, Barcelona. Built to show the work, not describe it</footer>
 
 <script>
 /* ---------- content model ---------- */
@@ -388,7 +394,7 @@ const CV = {
 
 const CASES = {
   rmit:{
-    org:"RMIT Europe", role:"AI Programme Leader<br>& Solutions Architect<br>2023–2026",
+    org:"RMIT Europe", role:"AI Programme Leader<br>& Solutions Architect<br>2023-2026",
     title:"From GenAI pilots to governed production AI: an institution-wide architecture",
     challenge:"RMIT Europe had GenAI enthusiasm but no coherent system: scattered pilots, no governance, and no way for leadership to see which AI efforts created value. The task was an end-to-end AI strategy spanning executive policy down to the tools researchers used daily. It had to be real, not a slide deck.",
     did:[
@@ -408,7 +414,7 @@ const CASES = {
     tags:["Enterprise AI architecture","Multi-domain integration","AI governance","Vendor selection","Agentic AI in production"]
   },
   allwomen:{
-    org:"AllWomen", role:"AI Programme Architect<br>& Lead 2025–present",
+    org:"AllWomen", role:"AI Programme Architect<br>& Lead, 2025-present",
     title:"AI copilots for 75 companies: adoption at scale, measured in outcomes",
     challenge:"Most AI training ends at inspiration: founders leave excited, then nothing ships. AllWomen, running a NextGenerationEU-funded program, needed the opposite: 100+ female founders across three cohorts walking away with working AI systems inside their businesses, and evidence it happened.",
     did:[
@@ -426,7 +432,7 @@ const CASES = {
     tags:["AI solution design at scale","Copilot architecture","Adoption & enablement","Outcome measurement","Funder-grade reporting"]
   },
   network:{
-    org:"22@Network Barcelona", role:"VP Entrepreneurship<br>Commission 2025",
+    org:"22@Network Barcelona", role:"VP Entrepreneurship<br>Commission, 2025",
     title:"An AI-assisted pipeline that turned 115 applications into 420 high-value meetings",
     challenge:"Barcelona's 22@ Demo Day had the classic matching problem: a flood of applications, a limited investor pool, and no scalable way to connect the right founders to the right funds. Done manually, curation is slow and subjective. The goal was a structured, AI-assisted system that screens at volume and matches with precision.",
     did:[
@@ -511,11 +517,11 @@ const FW = {
     <p class="fw-desc">The reason 95% of enterprise AI pilots never reach production isn't technical: it's governance and adoption. This is the model that carries an initiative across that gap.</p>
     <div class="gov">
       <div class="gov-stages">
-        <div class="stage s1"><b>1 · Pilot</b><p>Contained experiment · low-risk data only · fast and sandboxed</p></div>
+        <div class="stage s1"><b>1. Pilot</b><p>Contained experiment, low-risk data only, fast and sandboxed</p></div>
         <div class="gate">gate →</div>
-        <div class="stage s2"><b>2 · Validation</b><p>Eval frameworks · security review · cost &amp; maintenance check</p></div>
+        <div class="stage s2"><b>2. Validation</b><p>Eval frameworks, security review, cost &amp; maintenance check</p></div>
         <div class="gate">gate →</div>
-        <div class="stage s3"><b>3 · Production</b><p>Monitored &amp; owned · governed access · embedded in workflow</p></div>
+        <div class="stage s3"><b>3. Production</b><p>Monitored &amp; owned, governed access, embedded in workflow</p></div>
       </div>
       <div class="gov-layer"><b>Executive policy layer</b><span>Sets risk appetite, compliance boundaries, and which decisions escalate, spans all three stages.</span></div>
       <div class="gov-layer"><b>Frontline adoption layer</b><span>Standards, toolkits, and enablement so teams actually use what ships, where most pilots die.</span></div>
