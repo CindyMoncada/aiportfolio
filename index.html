@@ -183,6 +183,16 @@
   .gov-layer span{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.6}
   .gov-foot{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:center;margin-top:6px;letter-spacing:0.02em}
 
+  /* ---- projects / reference builds ---- */
+  .proj-media{margin:6px 0 4px}
+  .pv{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid var(--line);background:#000}
+  .pv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .parch{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:var(--paper);margin-top:20px}
+  .docs{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;border-top:1px solid var(--line)}
+  .doclink{font-family:var(--mono);font-size:11.5px;letter-spacing:0.02em;color:var(--ink-soft);text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:8px 15px;transition:all .2s ease;display:inline-flex;align-items:center;gap:8px}
+  .doclink:hover{border-color:var(--accent);color:var(--accent)}
+  .doclink b{color:var(--accent);font-weight:500}
+
   /* ---- stack ---- */
   .stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   @media(max-width:640px){.stack-grid{grid-template-columns:1fr}}
@@ -266,8 +276,43 @@
     <div id="fws"></div>
   </section>
 
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Reference builds</h2></div>
+    <p class="sec-sub">Systems I built end to end on the cloud, documented the way a Solutions Architect is judged: the design decisions, the trade-offs, the governance, and the cost. Working reference implementations, not slideware.</p>
+    <article class="case">
+      <div class="case-top">
+        <div><div class="case-org">Project 01 · Azure · EU AI Act</div><h3>EU AI Act compliance advisor</h3></div>
+        <div class="case-role">RAG on Azure<br>Reference build<br>2026</div>
+      </div>
+      <div class="proj-media">
+        <div class="pv">
+          <iframe src="https://www.youtube.com/embed/J93NHQoEtek?rel=0&amp;modestbranding=1" title="EU AI Act Compliance Advisor — RAG on Azure" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <img class="parch" src="Project1_Architecture.svg" alt="Architecture: the EU AI Act PDF is ingested through Blob storage and an import wizard into an Azure AI Search vector index; a Foundry agent on gpt-5-mini retrieves through Foundry IQ; all inside the Sweden Central EU data boundary.">
+      </div>
+      <div class="case-body">
+        <div><div class="block-label">The approach</div>
+          <p>A retrieval-augmented assistant that answers questions on the EU AI Act grounded strictly in the official text, so every answer cites the specific articles and refuses when the source doesn't cover the question. Built on Microsoft Foundry: a Foundry agent (gpt-5-mini) grounded on a Foundry IQ knowledge base over an Azure AI Search vector index, with text-embedding-3-small for retrieval.</p>
+          <p style="margin-top:14px;font-size:13px;color:var(--mute)"><em>Designed and assembled from managed cloud services. The contribution is the architecture, the design decisions, and the governance, not custom model code.</em></p></div>
+        <div><div class="block-label">Governance &amp; residency</div>
+          <ul>
+            <li>Runs inside the EU data boundary in Sweden Central.</li>
+            <li>Managed identity with least-privilege roles throughout.</li>
+            <li>Web search deliberately disabled to keep data in the boundary.</li>
+            <li>Grounded answers with article-level citations; refuses out-of-scope questions.</li>
+          </ul></div>
+        <div class="docs">
+          <a class="doclink" href="Project1_Design_Decisions.pdf" target="_blank" rel="noopener"><b>&#8595;</b>Design decisions</a>
+          <a class="doclink" href="Project1_Security_Governance.pdf" target="_blank" rel="noopener"><b>&#8595;</b>Security &amp; governance</a>
+          <a class="doclink" href="Project1_Cost_Model.pdf" target="_blank" rel="noopener"><b>&#8595;</b>Cost model</a>
+          <a class="doclink" href="Project1_Architecture.svg" target="_blank" rel="noopener"><b>&#8595;</b>Architecture diagram</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
   <section id="stack">
-    <div class="sec-head"><span class="sec-num">03</span><h2>Toolset &amp; credentials</h2></div>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Toolset &amp; credentials</h2></div>
     <p class="sec-sub">The technical and commercial stacks behind the work, and the credentials that back them.</p>
     <div class="stack-grid">
       <div class="stack-card">
