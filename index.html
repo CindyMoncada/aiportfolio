@@ -184,10 +184,11 @@
   .gov-foot{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:center;margin-top:6px;letter-spacing:0.02em}
 
   /* ---- projects / reference builds ---- */
-  .proj-media{margin:6px 0 4px}
+  .proj-media{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin:6px 0 4px}
+  @media(max-width:640px){.proj-media{grid-template-columns:1fr}}
   .pv{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid var(--line);background:#000}
   .pv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .parch{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:var(--paper);margin-top:20px}
+  .parch{width:100%;aspect-ratio:16/9;object-fit:contain;display:block;border-radius:12px;border:1px solid var(--line);background:var(--card);margin:0}
   .proj-docs{grid-column:1/-1;padding-top:22px;border-top:1px solid var(--line)}
   .proj-docs .block-label{margin-bottom:12px}
   .docs-row{display:flex;flex-wrap:wrap;gap:10px}
@@ -310,7 +311,6 @@
             <a class="doclink" href="Project1_Design_Decisions.pdf" download><b>&#8595;</b>Design decisions (PDF)</a>
             <a class="doclink" href="Project1_Security_Governance.pdf" download><b>&#8595;</b>Security &amp; governance (PDF)</a>
             <a class="doclink" href="Project1_Cost_Model.pdf" download><b>&#8595;</b>Cost model (PDF)</a>
-            <a class="doclink" href="Project1_Architecture.jpg" download><b>&#8595;</b>Architecture diagram (JPG)</a>
           </div>
         </div>
       </div>
@@ -344,7 +344,6 @@
             <a class="doclink" href="Project2_Design_Decisions.pdf" download><b>&#8595;</b>Design decisions (PDF)</a>
             <a class="doclink" href="Project2_Security_Governance.pdf" download><b>&#8595;</b>Security &amp; governance (PDF)</a>
             <a class="doclink" href="Project2_Cost_Model.pdf" download><b>&#8595;</b>Cost model (PDF)</a>
-            <a class="doclink" href="Project2_Architecture.jpg" download><b>&#8595;</b>Architecture diagram (JPG)</a>
           </div>
         </div>
       </div>
@@ -378,7 +377,6 @@
             <a class="doclink" href="Project3_Control_Act_Mapping.pdf" download><b>&#8595;</b>Control-to-Act mapping (PDF)</a>
             <a class="doclink" href="Project3_Design_Decisions.pdf" download><b>&#8595;</b>Design decisions (PDF)</a>
             <a class="doclink" href="Project3_Cost_Model.pdf" download><b>&#8595;</b>Cost model (PDF)</a>
-            <a class="doclink" href="Project3_Architecture.jpg" download><b>&#8595;</b>Architecture diagram (JPG)</a>
           </div>
         </div>
       </div>
